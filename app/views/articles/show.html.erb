@@ -1,0 +1,35 @@
+<h1 class = 'col-sm-offset-4 col-sm-8'>Title: <%= @article.title%></h1>
+
+<div class="row">
+	<div class="col-sm-5 col-sm-offset-4">
+		<div class="well well-lg">
+			<h4 class="center description"><strong>Description</strong></h4>
+			<div class = 'center description'	>
+				<%= simple_format(@article.description) %>
+			</div>
+			<div class = 'center description'	>
+				<% if @article.categories.any? %>
+					<p><b>Categories:</b> <%= render @article.categories %></p>
+			  <% end %>
+			</div>
+			<div class="article-meta-details">
+				<small><b>Created by:</b> <%= link_to @article.user.name, user_path(@article.user) %>,
+				<%= time_ago_in_words(@article.created_at) %> ago<br>
+				<b>Last updated:</b> <%= time_ago_in_words(@article.updated_at) %> ago</small>
+
+			</div>
+			<% if logged_in? && (@article.user == current_user || current_user.admin?) %>
+				<div class="article-actions">
+					<%= link_to 'Delete', article_path(@article), method: :delete, data: {confirm: "Are you sure?"}, class:'btn btn-sm btn-danger' %>
+					<%= link_to 'Edit', edit_article_path(@article), class:'btn btn-sm btn-primary' %>
+					<%= link_to 'Download (PDF)', article_path(@article, format: 'pdf') %>
+				</div>
+				<% end %>
+		</div>
+	</div>
+</div>
+
+<div class = 'col-sm-8 col-sm-offset-4'>
+	<%= link_to 'Articles List', articles_path, class:'btn btn-sm btn-primary'  %>
+	<%= link_to 'New Article', new_article_path, class:'btn btn-sm btn-primary'%>
+</div>

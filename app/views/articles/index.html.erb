@@ -1,0 +1,8 @@
+<h2 align="center"> List of all articles</h2>
+
+<%= render 'articles', object: @articles %>
+
+<div align="center">
+	<%= link_to 'Create new Article', new_article_path, class: 'btn btn-md btn-primary' %>&nbsp&nbsp
+	<%= link_to 'Home', root_path, class: 'btn btn-md btn-primary' %>
+</div>

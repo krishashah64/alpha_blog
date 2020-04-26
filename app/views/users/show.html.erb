@@ -1,0 +1,22 @@
+<h1 align = 'center'>Welcome to <%= @user.name%>'s pages</h1>
+<div class = 'row'>
+	<div class = 'col-sm-offset-4 col-sm-4 center'>
+		<%= gravatar_for @user, size: 150 %>
+	</div>
+</div>
+<% if @user.articles %>
+	<h4 align = 'center'><%= @user.name%>'s <%= @user.articles.count %> articles</h4>
+	<%= render 'articles/articles', object: @user.articles %>
+<% else %>
+	<div align = 'center'>
+		<b>You have not created any articles yet</b><br><br>
+	</div>
+<% end %>
+<div align = 'center'>
+	<% if logged_in? %>
+		<%= link_to 'Create new article', new_article_path, class: 'btn btn-md btn-primary' %>
+		<% if current_user.admin? %>
+			<%= link_to 'Delete this account', user_path(@user), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-md btn-default' %>
+			<% end %>
+	<% end %>
+</div>

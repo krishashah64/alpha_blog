@@ -1,0 +1,19 @@
+<%= render 'shared/errors', obj: @category %><br>
+
+<div class = 'row'>
+	<div class = 'col-sm-12'>
+		<%= form_for(@category, html: {class: 'form-horizontal', role: 'form'}) do |f| %>
+			<div class="form-group">
+				<div class="control-label col-sm-4">
+					<%= f.label :name %>
+				</div>
+				<div class = 'col-sm-5'>
+					<%= f.text_field :name, class: "form-control", placeholder: "Name of articlesss", autofocus: true %>
+				</div>
+			</div>
+			<div align = 'center'>
+					<%= f.submit class: 'btn btn-primary btn-md' %><br><br>
+			</div>
+		<% end %>
+	</div>
+</div>		

@@ -1,0 +1,28 @@
+<div class="row">
+	<div class="col-xs-4 col-xs-offset-4">
+		<% object.each do |article| %>
+			<div class="well well-lg">
+				<div class="article-title">
+					<b>Title: </b><%= article.title %><br>
+					<b>Description: </b><%= article.description %><br>
+					<% if article.categories.any? %>
+						<p><b>Categories:</b> <%= render article.categories %></p>
+					<% end %>
+					<div class="article-meta-details">
+						<small><b>Created by:</b> <%= article.user.name if article.user%>,
+						<%= time_ago_in_words(article.created_at) %> ago<br>
+						<b>Last updated:</b> <%= time_ago_in_words(article.updated_at) %> ago</small>
+					</div>
+					<% if logged_in? && (article.user == current_user || current_user.admin?) %>
+						<div class="article-actions">
+							<%= link_to 'Delete', article_path(article), method: :delete, data: {confirm: "Are you sure?"},  class: 'btn btn-sm btn-danger' %>
+							<%= link_to 'Edit', edit_article_path(article), class: 'btn btn-sm btn-primary' %>
+							
+							<%= link_to 'Show', article_path(article),  class: 'btn btn-sm btn-success' %><br><br>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
