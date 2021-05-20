@@ -105,7 +105,8 @@ GEM
       pdf-core (~> 0.7.0)
       ttfunk (~> 1.5)
     public_suffix (4.0.3)
-    puma (3.12.4)
+    puma (4.3.8)
+      nio4r (~> 2.0)
     rack (2.2.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -192,6 +193,7 @@ GEM
 PLATFORMS
   ruby
   x86-mingw32
+  x86_64-linux
 
 DEPENDENCIES
   active_model_otp
@@ -204,7 +206,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   prawn
-  puma (~> 3.7)
+  puma (~> 4.3)
   rails (~> 5.1.7)
   sass-rails (~> 5.0)
   selenium-webdriver
